@@ -7,7 +7,8 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 電源はモバイルブースターが簡単です。 3.3v~5v 200mA の電源を接続することも可能です。<BR>
 詳細は上記URLの回路図から理解してください。<BR>
 
-ハンダ付けができる方は こちらのLED（ https://www.switch-science.com/catalog/2397/ ）も追加すると、より便利なリモコンとなります。結線方法はソースコードのファイルヘッダを参照ください。<BR>
+ハンダ付けができる方は こちらのLED（ https://www.switch-science.com/catalog/2397/ ）も追加すると、<BR>
+より便利なリモコンとなります。結線方法はソースコードのファイルヘッダを参照ください。<BR>
 増設したLED1,LED2の意味合いは以下となります。<BR>
   LED1 ＝ wifi接続状態　（OFF:接続確立、ON:THETA S との接続動作）<BR>
   LED2 ＝ THETA S BUSY 状態　（OFF:idle状態、ON:静止画保存待ち or 動画撮影中 ）<BR>
