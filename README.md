@@ -10,8 +10,8 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 ハンダ付けができる方は こちらのLED（ https://www.switch-science.com/catalog/2397/ ）も追加すると、<BR>
 より便利なリモコンとなります。結線方法はソースコードのファイルヘッダを参照ください。<BR>
 増設したLED1,LED2の意味合いは以下となります。<BR>
-  LED1 ＝ wifi接続状態　（OFF:接続確立、ON:THETA S との接続動作）<BR>
-  LED2 ＝ THETA S BUSY 状態　（OFF:idle状態、ON:静止画保存待ち or 動画撮影中 ）<BR>
+  LED1 ＝ THETA S BUSY 状態　（OFF:idle状態、ON:静止画保存待ち or 動画撮影中 ）<BR>
+  LED2 ＝ wifi接続状態　（OFF:接続確立、ON:THETA S との接続動作）<BR>
   LED1とLED2を同時点灯 ＝ 後述のTHETA S登録モード中<BR>
 
 このファームウェアの特徴としては、<BR>
