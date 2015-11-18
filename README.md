@@ -1,5 +1,6 @@
 
-スイッチサイエンス社製 ESP-WROOM-02開発ボード( https://www.switch-science.com/catalog/2500/ )を RICOH THETA S のリモコンにするためのファームウェアソースコードです。<BR>
+スイッチサイエンス社製 ESP-WROOM-02開発ボード( https://www.switch-science.com/catalog/2500/ )を<BR>
+RICOH THETA S のリモコンにするためのファームウェアソースコードです。<BR>
 （が、本ソースコードをESP8266を利用した他のチップに適用することは容易と思われます）<BR>
 <BR>
 今回は、はんだ付けなし でも動作するよう作成しました。0番ピンと繋がったボタンがレリーズボタンになります。<BR>
