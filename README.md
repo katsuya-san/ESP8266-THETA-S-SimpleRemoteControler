@@ -1,5 +1,5 @@
 
-スイッチサイエンス社製 ESP-WROOM-02開発ボード(https://www.switch-science.com/catalog/2500/)を RICOH THETA S のリモコンにするためのファームウェアソースコードです。<BR>
+スイッチサイエンス社製 ESP-WROOM-02開発ボード( https://www.switch-science.com/catalog/2500/ )を RICOH THETA S のリモコンにするためのファームウェアソースコードです。<BR>
 （が、本ソースコードをESP8266を利用した他のチップに適用することは容易と思われます）<BR>
 <BR>
 今回は、はんだ付けなし でも動作するよう作成しました。0番ピンと繋がったボタンがレリーズボタンになります。<BR>
@@ -8,47 +8,48 @@
 
 ハンダ付けができる方は こちらのLED（ https://www.switch-science.com/catalog/2397/ ）も追加すると、より便利なリモコンとなります。結線方法はソースコードのファイルヘッダを参照ください。<BR>
 増設したLED1,LED2の意味合いは以下となります。<BR>
-　LED1 ＝ wifi接続状態　（OFF:接続確立、ON:THETA S との接続動作）<BR>
-　LED2 ＝ THETA S BUSY 状態　（OFF:idle状態、ON:静止画保存待ち or 動画撮影中 ）<BR>
-　LED1とLED2を同時点灯 ＝ 後述のTHETA S登録モード中<BR>
+  LED1 ＝ wifi接続状態　（OFF:接続確立、ON:THETA S との接続動作）<BR>
+  LED2 ＝ THETA S BUSY 状態　（OFF:idle状態、ON:静止画保存待ち or 動画撮影中 ）<BR>
+  LED1とLED2を同時点灯 ＝ 後述のTHETA S登録モード中<BR>
 
 このファームウェアの特徴としては、<BR>
-　・電源Onからの起動、起動してからのwifi接続確立(平均3~5秒程度)、<BR>
-　  ボタン操作に対するTHETA Sの反応、wifi接続断認識、いずれも速いです。<BR>
+  ・電源Onからの起動、起動してからのwifi接続確立(平均3~5秒程度)、<BR>
+    ボタン操作に対するTHETA Sの反応、wifi接続断認識、いずれも速いです。<BR>
 　　（静止画撮影の応答の速さを重視しています。動画はTHETA S本体の反応自体が遅いのでそれほど頑張ってません）<BR>
 <BR>
-　・「初回起動」 or 「THETA Sとの接続動作中に上記ボタンを5秒程長押し」すると、<BR>
-　　THETA S を検索＆して内部のflashメモリに記憶するというモードになります。<BR>
-　　THETA S の SSID, パスワードは出荷状態としてください。<BR>
-　　登録モードの時は、離れたTHETA S を検索対象としないようにしました。<BR>
-　　できるだけTHETA S を近づけてください。<BR>
-　　THETA S の探索が終わると自動で、THETA Sとの接続動作に切り替わります。<BR>
+  ・「初回起動」 or 「THETA Sとの接続動作中に上記ボタンを5秒程長押し」すると、<BR>
+    THETA S を検索＆して内部のflashメモリに記憶するというモードになります。<BR>
+    THETA S の SSID, パスワードは出荷状態としてください。<BR>
+    登録モードの時は、離れたTHETA S を検索対象としないようにしました。<BR>
+    できるだけTHETA S を近づけてください。<BR>
+    THETA S の探索が終わると自動で、THETA Sとの接続動作に切り替わります。<BR>
 <BR>
-　・THETA S が登録された状態では、電源ONすると自動で「THETA S との接続動作」となります。<BR>
+  ・THETA S が登録された状態では、電源ONすると自動で「THETA S との接続動作」となります。<BR>
 <BR>
-　・THETAが接続されると、本体の動作モード（静止画・動画）に連動して、静止画撮影 or 動画撮影開始／停止<BR>
-　　が行えるようになります。　本体操作で動画撮影開始してリモコンで停止や、その逆も可能です。<BR>
+  ・THETAが接続されると、本体の動作モード（静止画・動画）に連動して、静止画撮影 or 動画撮影開始／停止<BR>
+    が行えるようになります。　本体操作で動画撮影開始してリモコンで停止や、その逆も可能です。<BR>
 <BR>
-　・動画撮影中に wifi 接続を切り、再びwifi接続した後などでも正常動作が可能です。<BR>
+  ・動画撮影中に wifi 接続を切り、再びwifi接続した後などでも正常動作が可能です。<BR>
 <BR>
 　・インターバル撮影の開始は行えませんが、スマートフォンでインターバル撮影を開始してTHETA S とスマートフォンの<BR>
 　　wifi接続を切ったあと、THETA S と本リモコンをwifi接続した場合、本リモコンでインターバル撮影の停止が行えます。<BR>
-
+<BR>
+<BR>
 開発環境は、arduino IDE です。JSONの解釈にフリーのライブラリを使用しています。<BR>
 以下２手順で開発環境をセットアップしてください。それほど難しくありません。<BR>
-　(1) ESP8266用にadruino IED を 10分でIDEのセットアップ<BR>
-　　　http://qiita.com/azusa9/items/264165005aefaa3e8d7d<BR>
-　(2) JSON パーサーのライブラリを追加する。<BR>
-　　　ライブラリは以下からzipをダウンロード<BR>
-　　　https://github.com/bblanchon/ArduinoJson<BR>
-　　　ライブラリの追加方法は以下<BR>
-　　　http://make.bcde.jp/category/39/<BR>
+  (1) ESP8266用にadruino IED を 10分でIDEのセットアップ<BR>
+      http://qiita.com/azusa9/items/264165005aefaa3e8d7d<BR>
+  (2) JSON パーサーのライブラリを追加する。<BR>
+      ライブラリは以下からzipをダウンロード<BR>
+      https://github.com/bblanchon/ArduinoJson<BR>
+      ライブラリの追加方法は以下<BR>
+      http://make.bcde.jp/category/39/<BR>
 <BR>
 あとは、<BR>
-　・パソコンにESP-WROOM-02開発ボードを繋ぐ（ドライバがインストールされCOMポートが認識されるまで待つ）<BR>
-　・arduino IDE で本ファイル(ESP_ThetaRemote.ino)を開いて（ダブルクリック）<BR>
-　　「スケッチ」→「マイコンボードに書き込む」をクリックしてしばしまつ。<BR>
+  ・パソコンにESP-WROOM-02開発ボードを繋ぐ（ドライバがインストールされCOMポートが認識されるまで待つ）<BR>
+  ・arduino IDE で本ファイル(ESP_ThetaRemote.ino)を開いて（ダブルクリック）<BR>
+    「スケッチ」→「マイコンボードに書き込む」をクリックしてしばしまつ。<BR>
 で、出来上がります。<BR>
-
-その他の細々したことは、ご自身でなんとかしてください。
-
+<BR>
+その他の細々したことは、ご自身でなんとかしてください。<BR>
+<BR>
