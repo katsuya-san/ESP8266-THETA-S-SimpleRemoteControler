@@ -26,7 +26,7 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>  // Add JSON Library  https://github.com/bblanchon/ArduinoJson
 
-const char sThetaRemoteVersion[] = "v01.00";    //Last Update 2015-11-18
+const char sThetaRemoteVersion[] = "v01.01";    //Last Update 2015-11-19 : add `1 Period Interval Exp' at Initial Cycle
 
 //--- ESP-WROOM-02 Hardwear ---
 const int buttonPin = 0;
@@ -76,6 +76,8 @@ const char  sUrlCmdStat[]     = "/osc/commands/status" ;
 #define   INT_EXP_OFF         0
 #define   INT_EXP_ON          1
 
+#define   PUSH_CMD_CNT_INTEXP 3
+
 #define   INT_EXP_STAT_STOP   0
 #define   INT_EXP_STAT_RUN    1
 
@@ -97,10 +99,17 @@ String  strTakePicLastId  = "0";
 String  strSSID           = "SID_0000";
 String  strCaptureMode    = "";
 
+#define   LED_BLINK_CYCLE     10
+int     iLed1BlinkStat    = 0;
+int     iLed1BlinkCycleCnt= LED_BLINK_CYCLE;
+
+
 //===============================
 // User define function prototype
 //===============================
 void    INT_ReleaseSw(void);
+
+void    BlinkLed1(void);
 
 int     ConnectTHETA(void);
 int     SearchAndEnterTHETA(void);
@@ -245,10 +254,14 @@ void loop() {
       iRelease = 0;
     } else {
       //LED1
-      if ( (iTakePicStat == TAKE_PIC_STAT_BUSY) || (iMoveStat == MOVE_STAT_REC) ) {
+      if ( (iTakePicStat == TAKE_PIC_STAT_BUSY) || (iMoveStat == MOVE_STAT_REC) || (iIntExpStat == INT_EXP_STAT_RUN) ) {
         digitalWrite(led1Pin, HIGH);
       } else {
-        digitalWrite(led1Pin, LOW);
+        if ( iIntExpOnOff == INT_EXP_ON ) {
+          BlinkLed1();
+        } else {
+          digitalWrite(led1Pin, LOW);
+        }
       }
       
       iStatChkCnt++;
@@ -286,6 +299,26 @@ void INT_ReleaseSw(void)
 }
 
 //-------------------------------------------
+// LED1 Blink Control
+//-------------------------------------------
+void    BlinkLed1(void)
+{
+  iLed1BlinkCycleCnt++;
+  if (iLed1BlinkCycleCnt >= LED_BLINK_CYCLE ) {
+    iLed1BlinkCycleCnt=0;
+    
+    if ( iLed1BlinkStat == 0 ) {
+      iLed1BlinkStat = 1;
+      digitalWrite(led1Pin, HIGH);
+    } else {
+      iLed1BlinkStat = 0;
+      digitalWrite(led1Pin, LOW);
+    }
+  }
+  return;
+}
+
+//-------------------------------------------
 // Wi-Fi Connect functions
 //-------------------------------------------
 int ConnectTHETA(void)
@@ -293,11 +326,13 @@ int ConnectTHETA(void)
   int iRet = WIFI_CONNECT_THETA;
   int iButtonState = 0;
   int iButtonCnt = 0;
+  int iPushCnt = 0;
 
   Serial.println("");
-  Serial.println("WiFi disconnected");  
+  Serial.println("WiFi disconnected");
+  iRelease = 0;
 
- iButtonCnt=0;
+  iButtonCnt=0;
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
@@ -311,12 +346,29 @@ int ConnectTHETA(void)
     } else {
       iButtonCnt=0;
     }
+    if ( iRelease == 1 ) {
+       iRelease = 0;
+       iPushCnt++;
+    }
     delay(500);
   }
-  Serial.println("");
-  Serial.println("WiFi connected");  
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+
+  if ( iRet != WIFI_SCAN_THETA ) {
+    Serial.println("");
+    Serial.println("WiFi connected");  
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+
+    Serial.println("");
+    if ( iPushCnt >= PUSH_CMD_CNT_INTEXP ) {
+      iIntExpOnOff = INT_EXP_ON;
+      Serial.println("1 Period Interval Exp ON ! : PushCnt=" + String(iPushCnt));
+    } else {
+      iIntExpOnOff = INT_EXP_OFF;
+      Serial.println("1 Period Interval Exp OFF  : PushCnt=" + String(iPushCnt));
+    }
+    Serial.println("");
+  }
   
   return iRet;
 }
@@ -606,7 +658,8 @@ int ThetaAPI_Post_State(void)
       const char* _recordedTime   = root["state"]["_recordedTime"];
       const char* _recordableTime = root["state"]["_recordableTime"];
       Serial.println("ThetaAPI_Post_State() : sessionId[" + String(sessionId) + "], batteryLevel[" + String(batteryLevel) +
-                      "], _captureStatus[" + String(_captureStatus) + "], _recordedTime[" + String(_recordedTime) + "]");
+                      "], _captureStatus[" + String(_captureStatus) + 
+                      "], _recordedTime[" + String(_recordedTime) + "], _recordableTime[" + String(_recordableTime) + "]");
       
       strSSID = String(sessionId);
       
@@ -616,6 +669,7 @@ int ThetaAPI_Post_State(void)
       
       if ( strCaptureStatus.equals("idle") ) {
         iMoveStat = MOVE_STAT_STOP;
+        iIntExpStat = INT_EXP_STAT_STOP;
       } else {
         if ( strRecordedTime.equals("0") && strRecordableTime.equals("0") ) {
           iMoveStat = MOVE_STAT_STOP;
@@ -623,7 +677,6 @@ int ThetaAPI_Post_State(void)
           iIntExpStat = INT_EXP_STAT_RUN ;
         } else {
           iMoveStat = MOVE_STAT_REC;
-          iIntExpOnOff= INT_EXP_OFF;
           iIntExpStat = INT_EXP_STAT_STOP;
         }
       }
@@ -855,4 +908,3 @@ int     ThetaAPI_Post_commnads_status(void)
   
   return iRet;
 }
-
