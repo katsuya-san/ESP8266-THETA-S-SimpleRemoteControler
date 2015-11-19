@@ -1,5 +1,6 @@
 
 動作動画：https://youtu.be/Eq2YSG_tlbY<BR>
+[![](http://img.youtube.com/vi/Eq2YSG_tlbY/0.jpg)](https://www.youtube.com/watch?v=Eq2YSG_tlbY)
 <BR>
 スイッチサイエンス社製 ESP-WROOM-02開発ボード( https://www.switch-science.com/catalog/2500/ )を<BR>
 RICOH THETA S のリモコンにするためのファームウェアソースコードです。<BR>
