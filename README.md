@@ -45,8 +45,8 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
   　Wi-Fi断状態でレリーズボタンを３回押してから Wi-Fi接続するとインターバル撮影モードとなりLED1が点滅。<BR>
   　1回のインターバル撮影が終わると、通常モードとなります。<BR>
   　インターバル撮影中にWi-Fiが切断されて再接続してもインターバル撮影を終了できます。<BR>
-  　詳細は以下動画を参照してください。<BR>
-  　～動画準備中～<BR>
+  　詳細は以下動画（ https://youtu.be/OOI3o3XWs1M ）を参照してください。<BR>
+[![](http://img.youtube.com/vi/OOI3o3XWs1M&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=OOI3o3XWs1M&feature=youtu.be)
 <BR>
 <BR>
 <BR>
