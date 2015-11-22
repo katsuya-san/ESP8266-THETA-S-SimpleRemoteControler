@@ -26,7 +26,8 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>  // Add JSON Library  https://github.com/bblanchon/ArduinoJson
 
-const char sThetaRemoteVersion[] = "v01.01";    //Last Update 2015-11-19 : add `1 Period Interval Exp' at Initial Cycle
+const char sThetaRemoteVersion[] = "v01.02";    //Last Update 2015-11-22 : It was modified in order just in case.
+//In the old version THETA S search mode, Once in the vicinity of the remote controler has more than 21 THETA, buffer overflow occurs.
 
 //--- ESP-WROOM-02 Hardwear ---
 const int buttonPin = 0;
@@ -373,11 +374,12 @@ int ConnectTHETA(void)
   return iRet;
 }
 //----------------
+#define SEARCH_MAX_NUM 20
 int SearchAndEnterTHETA(void)
 {
   int iRet = 0;
   int iThetaCnt=0;
-  int aiSsidPosList[20];
+  int aiSsidPosList[SEARCH_MAX_NUM];
   
   Serial.println("");
   Serial.println("Search THETA");
@@ -401,8 +403,10 @@ int SearchAndEnterTHETA(void)
 
       if( WiFi.RSSI(i) >= NEAR_RSSI_THRESHOLD ) {
         if ( CheckThetaSsid(WiFi.SSID(i)) == 1 ) {
-          aiSsidPosList[iThetaCnt]=i;
-          iThetaCnt++;
+          if ( iThetaCnt < SEARCH_MAX_NUM ) {
+            aiSsidPosList[iThetaCnt]=i;
+            iThetaCnt++;
+          }
         }
       }
       delay(10);
