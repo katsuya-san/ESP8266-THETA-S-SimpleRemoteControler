@@ -1,4 +1,6 @@
-
+ケース収納例<BR>
+https://twitter.com/san_san_santa/status/669209324741234688 <BR>
+<BR>
 動作動画：https://youtu.be/Eq2YSG_tlbY<BR>
 [![](http://img.youtube.com/vi/Eq2YSG_tlbY/0.jpg)](https://www.youtube.com/watch?v=Eq2YSG_tlbY)
 <BR>
