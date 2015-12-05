@@ -1,5 +1,4 @@
 ケース収納例<BR>
-<BR>
 https://twitter.com/san_san_santa/status/669209324741234688 <BR>
 ESP-WROOM-02シンプル基盤で電池駆動の応用例<BR>
 https://twitter.com/san_san_santa/status/672988684300382208<BR>
