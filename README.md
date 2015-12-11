@@ -86,7 +86,9 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 <BR>
 その他の細々したことは、ご自身でなんとかしてください。<BR>
 <BR>
-
+##応用編（表示機と5方向スイッチでフルリモコン）
+こちらを参照ください。
+https://github.com/katsuya-san/ESP8266-THETA-S-FullRemoteControler
 
 ##License
 The MIT License (MIT)
