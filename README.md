@@ -1,8 +1,11 @@
+#ESP8266-THETA-S-SimpleRemoteControler
+##Hardware creation example
 ケース収納例<BR>
 https://twitter.com/san_san_santa/status/669209324741234688 <BR>
 ESP-WROOM-02シンプル基盤で電池駆動の応用例<BR>
 https://twitter.com/san_san_santa/status/672988684300382208<BR>
 https://twitter.com/san_san_santa/status/674210071807586304<BR>
+##Commentary
 動作動画：https://youtu.be/Eq2YSG_tlbY<BR>
 [![](http://img.youtube.com/vi/Eq2YSG_tlbY/0.jpg)](https://www.youtube.com/watch?v=Eq2YSG_tlbY)
 <BR>
@@ -60,6 +63,7 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 <BR>
 <BR>
 <BR>
+##ソフトウェア書き込み方法
 開発環境は、arduino IDE です。JSONの解釈にフリーのライブラリを使用しています。<BR>
 以下２手順で開発環境をセットアップしてください。それほど難しくありません。<BR>
 <BR>
@@ -81,3 +85,28 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 <BR>
 その他の細々したことは、ご自身でなんとかしてください。<BR>
 <BR>
+
+
+##License
+The MIT License (MIT)
+
+Copyright (c) 2015 Katsuya Yamamoto
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
