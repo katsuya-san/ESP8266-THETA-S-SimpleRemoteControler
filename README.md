@@ -68,7 +68,7 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 開発環境は、arduino IDE です。JSONの解釈にフリーのライブラリを使用しています。<BR>
 以下２手順で開発環境をセットアップしてください。それほど難しくありません。<BR>
 <BR>
-  (1) ESP8266用にadruino IED を 10分でIDEのセットアップ<BR>
+  (1) ESP8266用にadruino IDE を 10分でIDEのセットアップ<BR>
   　　http://qiita.com/azusa9/items/264165005aefaa3e8d7d<BR>
 <BR>
   (2) JSON パーサーのライブラリを追加する。<BR>
