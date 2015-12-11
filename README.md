@@ -1,4 +1,5 @@
-#ESP8266-THETA-S-SimpleRemoteControler
+#RICOH THETA S Simple Remote Controler <BR>(which a ESP8266 was used)
+RICOH THETA S Remote Control Software (Single Button Edition) for Switch Science ESP-WROOM-02 Dev.board
 ##Hardware creation example
 ケース収納例<BR>
 https://twitter.com/san_san_santa/status/669209324741234688 <BR>
