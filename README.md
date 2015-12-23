@@ -70,6 +70,8 @@ RICOH THETA S のリモコンにするためのファームウェアソースコ
 <BR>
   (1) ESP8266用にadruino IDE を 10分でIDEのセットアップ<BR>
   　　http://qiita.com/azusa9/items/264165005aefaa3e8d7d<BR>
+  　　以下設定も参考にしてください。ボードライブラリは2.0.0でないとコンパイル通りません。
+  　　https://twitter.com/san_san_santa/status/679548718467579905
 <BR>
   (2) JSON パーサーのライブラリを追加する。<BR>
   　　ライブラリは以下からzipをダウンロード<BR>
