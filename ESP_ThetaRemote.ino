@@ -380,6 +380,7 @@ int SearchAndEnterTHETA(void)
   int iRet = 0;
   int iThetaCnt=0;
   int aiSsidPosList[SEARCH_MAX_NUM];
+  char ssidbuf[256];
   
   Serial.println("");
   Serial.println("Search THETA");
@@ -402,7 +403,8 @@ int SearchAndEnterTHETA(void)
       Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE)?" ":"*");
 
       if( WiFi.RSSI(i) >= NEAR_RSSI_THRESHOLD ) {
-        if ( CheckThetaSsid(WiFi.SSID(i)) == 1 ) {
+        WiFi.SSID(i).toCharArray(ssidbuf, sizeof(ssidbuf));
+        if ( CheckThetaSsid(ssidbuf) == 1 ) {
           if ( iThetaCnt < SEARCH_MAX_NUM ) {
             aiSsidPosList[iThetaCnt]=i;
             iThetaCnt++;
@@ -423,7 +425,8 @@ int SearchAndEnterTHETA(void)
         }
       }
       //Enter THETA SSID to EEPROM
-      SaveThetaSsid( (char*)WiFi.SSID(aiSsidPosList[iRssiMaxPos]) );
+      WiFi.SSID(aiSsidPosList[iRssiMaxPos]).toCharArray(ssidbuf, sizeof(ssidbuf));
+      SaveThetaSsid(ssidbuf);
       Serial.println("");
       Serial.println("--- Detected TEHTA ---");
       Serial.print("SSID=");
