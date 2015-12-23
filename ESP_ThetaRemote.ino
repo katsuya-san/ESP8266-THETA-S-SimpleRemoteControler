@@ -26,8 +26,8 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoJson.h>  // Add JSON Library  https://github.com/bblanchon/ArduinoJson
 
-const char sThetaRemoteVersion[] = "v01.02";    //Last Update 2015-11-22 : It was modified in order just in case.
-//In the old version THETA S search mode, Once in the vicinity of the remote controler has more than 21 THETA, buffer overflow occurs.
+const char sThetaRemoteVersion[] = "v01.03";    //Last Update 2015-12-23 : corresponding to "ESP8266Arduino Core version 2.0.0"
+                                                // see http://esp8266.github.io/Arduino/versions/2.0.0/
 
 //--- ESP-WROOM-02 Hardwear ---
 const int buttonPin = 0;
