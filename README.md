@@ -6,6 +6,7 @@ https://twitter.com/san_san_santa/status/669209324741234688 <BR>
 ESP-WROOM-02シンプル基盤で電池駆動の応用例<BR>
 https://twitter.com/san_san_santa/status/672988684300382208<BR>
 https://twitter.com/san_san_santa/status/674210071807586304<BR>
+https://twitter.com/san_san_santa/status/675886034878513154<BR>
 ##Commentary
 動作動画：https://youtu.be/Eq2YSG_tlbY<BR>
 [![](http://img.youtube.com/vi/Eq2YSG_tlbY/0.jpg)](https://www.youtube.com/watch?v=Eq2YSG_tlbY)
